@@ -1,0 +1,8 @@
+#Differences: SVD and EVD differ in dimension. For SVD you'll need a orthonormal frame, in EVD you don't need a basis which is orthonormal. [1]
+
+#Similarities:
+[2] For a symmetric matrix, EVD and SVD are the same.
+
+[1]https://math.stackexchange.com/questions/320220/intuitively-what-is-the-difference-between-eigendecomposition-and-singular-valu 
+
+[2]https://math.stackexchange.com/questions/22825/how-to-compute-svd-singular-value-decomposition-of-a-symmetric-matrix
