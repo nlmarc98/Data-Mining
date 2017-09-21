@@ -6,3 +6,17 @@
 [1]https://math.stackexchange.com/questions/320220/intuitively-what-is-the-difference-between-eigendecomposition-and-singular-valu 
 
 [2]https://math.stackexchange.com/questions/22825/how-to-compute-svd-singular-value-decomposition-of-a-symmetric-matrix
+
+
+from simfaces import simfaces
+
+simfaces(10 ,'Cosine')
+
+#Correlation, look more at the difference in light. A picture with approx.
+#the same amount of light results in a high similarity. 
+#Correlation also really looks at specific facial features. Like someone is smiling in the picture results in high similarities.
+#Which gives in our opinion the best results. 
+#SMC and Cosine are very similar, they both use the overall light or contrast as a similarity measure.
+
+
+
