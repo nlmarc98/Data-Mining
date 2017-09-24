@@ -1,0 +1,32 @@
+
+1:
+from simfaces import simfaces
+
+simfaces(11 ,'Cosine')
+simfaces(6 ,'Cosine')
+simfaces(10 ,'Correlation')
+simfaces(7,'Correlation')
+simfaces(8 ,'Correlation')
+simfaces(10 ,'Jaccard')
+simfaces(15 ,'Jaccard')
+simfaces(7 ,'Jaccard')
+simfaces(10 ,'Cosine')
+simfaces(10 ,'Cosine')
+simfaces(6 ,'ExtendedJaccard')
+simfaces(12 ,'ExtendedJaccard')
+
+#Correlation, look more at the difference in light. A picture with approx.
+#the same amount of light results in a high similarity. 
+#Correlation also really looks at specific facial features. Like someone is smiling in the picture results in high similarities.
+#Which gives in our opinion the best results. 
+#SMC and Cosine are very similar, they both use the overall light or contrast as a similarity measure.
+
+
+
+2:
+
+#help similarity
+
+from scipy import spatial
+result = 1 - spatial.distance.cosine(x, y)
+print(result)
