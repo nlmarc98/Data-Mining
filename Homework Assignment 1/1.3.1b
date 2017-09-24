@@ -1,0 +1,78 @@
+from similarity import similarity
+
+X =  np.matrix('1 2 3; 4 5 6; 7 8 9') #np.random.rand(3,2)
+Y =  np.matrix('4 4 9; 6 1 2; 9 3 7 ') #np.random.rand(3,2)
+a = 2
+b = 0.2
+
+sim1 = similarity(a*X, Y, 'cos') 
+print sim1
+#[[ 0.98053109  0.58434871  0.8160769 ]
+# [ 0.96484583  0.72970373  0.89893892]
+# [ 0.95231149  0.76245834  0.91344624]]
+sim2 = similarity(X, Y, 'cos')
+print sim2
+#[[ 0.98053109  0.58434871  0.8160769 ]
+# [ 0.96484583  0.72970373  0.89893892]
+# [ 0.95231149  0.76245834  0.91344624]]
+#they are the same, the statement holds
+
+sim3 = similarity(a*X, Y, 'ext') 
+print sim3
+#[[ 0.85714286  0.4057971   0.58536585]
+# [ 0.74688797  0.3071161   0.71264368]
+# [ 0.          0.          0.        ]]
+sim4 = similarity(X, Y, 'ext')
+print sim4
+#[[ 0.44318182  0.34146341  0.30769231]
+# [ 0.9         0.53246753  0.75609756]
+# [ 0.84939759  0.40718563  0.81967213]]
+#the matrices are different, so the statement doesn't hold
+
+sim5 = similarity(a*X, Y, 'cor') 
+print sim5
+#[[ 0.8660254  -0.75592895 -0.32732684]
+# [ 0.8660254  -0.75592895 -0.32732684]
+# [ 0.8660254  -0.75592895 -0.32732684]]
+sim6 = similarity(X, Y, 'cor')
+print sim6
+#[[ 0.8660254  -0.75592895 -0.32732684]
+# [ 0.8660254  -0.75592895 -0.32732684]
+# [ 0.8660254  -0.75592895 -0.32732684]]
+#the 2 similarity matrices are the same, the statement holds
+
+sim7 = similarity(beta + X, Y, 'cos')
+print sim7
+#[[ 0.98134477  0.60709987  0.83055931]
+# [ 0.96372891  0.73316052  0.90056526]
+# [ 0.95172426  0.76374198  0.91397034]]
+sim8 = similarity(X, Y, 'cos')
+print sim8
+#[[ 0.98053109  0.58434871  0.8160769 ]
+# [ 0.96484583  0.72970373  0.89893892]
+# [ 0.95231149  0.76245834  0.91344624]]
+
+sim9 = similarity(beta + X, Y, 'ext')
+print sim9
+# [[ 0.48668503  0.37871524  0.34393363]
+# [ 0.90926791  0.52631579  0.7724226 ]
+# [ 0.83797586  0.39903956  0.81410121]]
+# the values in the matrices are different, so the statement doesn't hold
+sim10 = similarity(X, Y, 'ext')
+print sim10
+# [[ 0.44318182  0.34146341  0.30769231]
+# [ 0.9         0.53246753  0.75609756]
+# [ 0.84939759  0.40718563  0.81967213]]
+# the values in the matrices do not differ much, but the statement doesn't hold
+
+sim11 = similarity(beta + X, Y, 'cor')
+print sim11
+# [[ 0.8660254  -0.75592895 -0.32732684]
+# [ 0.8660254  -0.75592895 -0.32732684]
+# [ 0.8660254  -0.75592895 -0.32732684]]
+sim12 = similarity(X, Y, 'cor')
+print sim12
+# [[ 0.8660254  -0.75592895 -0.32732684]
+# [ 0.8660254  -0.75592895 -0.32732684]
+# [ 0.8660254  -0.75592895 -0.32732684]]
+#the 2 similarity matrices are the same, the statement holds
