@@ -1,0 +1,35 @@
+E:
+
+VarA= np.var(Y[:,0])
+VarB= np.var(Y[:,1])
+VarC= np.var(Y[:,2])
+VarD= np.var(Y[:,3])
+VarE= np.var(Y[:,4])
+VarF= np.var(Y[:,5])
+VarG= np.var(Y[:,6])
+VarH= np.var(Y[:,7])
+
+p=np.array([VarA,VarB,VarC,VarD,VarE,VarF,VarG,VarH])
+
+y=p
+N=len(y)
+x=range(N)
+plt.bar(x,y)
+plt.xlabel('PC')
+plt.ylabel('Var')
+fig= plt.gcf()
+plt.plot()
+plt.show()
+
+
+F:
+
+361.138085373 +770.96733149 +110.265167828=1242.37058469
+
+1242.37058469/7106.89745781 *100 = 17,5 % of the total variance
+
+G: 
+#The first PC explains the maximum amount of variation in the data. [1]
+The 2th PC  explains as much of the remaining variation as possible. A Large positive projection would thus mean, that there is a strong correlation in the data. And a negative one would mean that there isn't a strong correlation in the data. [1]
+
+[1]http://environmentalcomputing.net/principal-components-analysis/
