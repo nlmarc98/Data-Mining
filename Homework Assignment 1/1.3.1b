@@ -51,19 +51,19 @@ print sim8
 #[[ 0.98053109  0.58434871  0.8160769 ]
 # [ 0.96484583  0.72970373  0.89893892]
 # [ 0.95231149  0.76245834  0.91344624]]
+#the values in the matrices are very close and if the values were to be rounded-off to 1 decimal the matrices would be the same.
 
 sim9 = similarity(beta + X, Y, 'ext')
 print sim9
 # [[ 0.48668503  0.37871524  0.34393363]
 # [ 0.90926791  0.52631579  0.7724226 ]
 # [ 0.83797586  0.39903956  0.81410121]]
-# the values in the matrices are different, so the statement doesn't hold
 sim10 = similarity(X, Y, 'ext')
 print sim10
 # [[ 0.44318182  0.34146341  0.30769231]
 # [ 0.9         0.53246753  0.75609756]
 # [ 0.84939759  0.40718563  0.81967213]]
-# the values in the matrices do not differ much, but the statement doesn't hold
+# #the values in the matrices are very close and if the values were to be rounded-off to 1 decimal the matrices would be the same.
 
 sim11 = similarity(beta + X, Y, 'cor')
 print sim11
