@@ -1,4 +1,19 @@
 *Double click to type your answer for question 2.3.4 here*
 (i)The population mean is the same as the sample means. Because the sample mean from a group of observations is an estimate of the population mean [1]. And when you take the mean of the estimates of the population mean, you'll get the population mean. 
 
-(ii) 3.5333333333333332 
+(ii) 
+3.5333333333333332 
+4.8506586036216657
+
+3.80788655293
+2.69258240357
+3.40587727319
+1.70293863659
+
+Differences are:
+0.127456060148, this is very small and thus the central limit theorem holds. Because, ''The standard deviation of the sample means (known as the standard error of the mean) will be smaller than the population standard deviation and will be equal to the standard deviation of the population divided by the square root of the sample size.''[2]
+3.14771996703
+
+
+[1]http://www.stat.yale.edu/Courses/1997-98/101/sampmn.htm
+[2]https://people.richland.edu/james/lecture/m170/ch07-clt.html
