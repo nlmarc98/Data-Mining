@@ -11,8 +11,8 @@
 1.70293863659
 
 Differences are:
-0.127456060148, this is very small and thus the central limit theorem holds. Because, ''The standard deviation of the sample means (known as the standard error of the mean) will be smaller than the population standard deviation and will be equal to the standard deviation of the population divided by the square root of the sample size.''[2]
-3.14771996703
+0.127456060148, this is a very small diffrence and thus the central limit theorem holds. Because, ''The standard deviation of the sample means (known as the standard error of the mean) will be smaller than the population standard deviation and will be equal to the standard deviation of the population divided by the square root of the sample size.''[2]
+3.14771996703, this is a very big diffrence, and contrast the central limit theorem.
 
 
 [1]http://www.stat.yale.edu/Courses/1997-98/101/sampmn.htm
