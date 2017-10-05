@@ -1,0 +1,37 @@
+*Double click to type your elaboration for question 2.1.2 here*
+Fixed acidity: We have a small/weak negative correlation (-0.0777), which is significant (p<0.05). Thus fixed acidity isn't of much influence with respect to the quality of a wine.
+
+Volatile acidity: We have a small/weak negative correlation (-0.2623), which is significant (p<0.05). Thus volatile acidity also isn't of much influence with respect to the quality of a wine.
+
+Critric acid:
+We have a small/weak positive correlation (0.0890), which is significant(p<0.05).  Thus critic acid also isn't of much influence with respect to the quality of a wine.
+
+Residual sugar:
+We have a small/weak negative correlation (-0.0321), which is significant (p<0.05). Thus residual sugar also isn't of much influence with respect to the quality of a wine.
+
+Chlorides:
+We have a small/weak negative correlation (-0.1991), which is significant (p<0.05). Thus chlorides also isn't of much influence with respect to the quality of a wine.
+
+Free sulfur dioxide:
+We have a small/weak positive correlation (0.0552), which is significant(p<0.05).  Thus free sulfur dioxode also isn't of much influence with respect to the quality of a wine.
+
+Total sulfur dioxide:
+We have a small/weak negative correlation (-0.0397), which is significant (p<0.05). Thus sulfur dioxide also isn't of much influence with respect to the quality of a wine.
+
+Density:
+We have a medium negative correlation (-0.3169), which is very significant (p<0.05). Thus density is of quite  influence with respect to the quality of a wine. Thus a lower density gives higher scores.
+
+PH:
+We have a non-significant positive correlation, so with respect to the quality of wine, this one isn't of real influence.
+
+Sulphates:
+We have a small/weak positive correlation (0.0380), which is significant(p<0.05).  Thus sulphates also isn't of much influence with respect to the quality of a wine.
+
+
+Alcohol:
+We have a medium positve correlation (0.4495), which is very significant (p<0.05). Thus alcohol is of quite  influence with respect to the quality of a wine. Thus a higer alcohol percentage in the wine, creates higher scores.
+
+
+Thus only alcohol and density are of real contribution to the quality of the wine. 
+For alcohol the values which represent the higher quality scores fall between the 9% and 13% alcohol percentage, when you look at the graph.
+For density, all the bars fall clearly between the 0.990 and 1.000, when you look at the graph. Thus scores between 0.990 and 1.000 are associated with higher quality scores.
