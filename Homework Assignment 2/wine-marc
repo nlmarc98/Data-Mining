@@ -1,0 +1,77 @@
+##Answer to question 2.1.1
+from scipy.io import loadmat
+from scipy import stats
+import numpy as np
+import matplotlib.pyplot as plt
+
+mData = loadmat('./Data/wine.mat')
+#print(mData)
+data= mData['X']
+zData=stats.zscore(data)
+plt.boxplot(zData)
+plt.show()
+
+plt.hist(zData)
+plt.show()
+
+plt.figure()
+plt.subplot(1,3,1)
+plt.boxplot(zData[:,1])
+plt.subplot(1,3,2)
+plt.boxplot(zData[:,7])
+plt.subplot(1,3,3)
+plt.boxplot(zData[:,10])
+plt.show()
+#means=np.mean(stats.zscore(data), 0)
+#print(means)
+#print(np.std(data, axis=0))
+
+plt.figure()
+plt.subplot(1,3,1)
+plt.hist(zData[:,1])
+plt.ylabel('volatile acidity')
+plt.subplot(1,3,2)
+plt.hist(zData[:,7])
+plt.subplot(1,3,3)
+plt.hist(zData[:,10])
+plt.show()
+
+
+#print(mData)
+
+new_V_A=list()
+for i in data[:,1]:
+    if i< 10*2:
+        new_V_A.append(i)
+        
+new_D_A=list()
+for i in data[:,7]:
+ if i <10*1:
+        new_D_A.append(i)
+ 
+
+new_A_A=list()
+for i in data[:,10]:
+ if i<10*20:
+        new_A_A.append(i)
+
+Z_V_data=stats.zscore(new_V_A)
+plt.boxplot(Z_V_data)
+plt.show()
+Z_D_data=stats.zscore(new_D_A)
+plt.boxplot(Z_D_data)
+plt.show()
+Z_A_data=stats.zscore(new_A_A)
+plt.boxplot(Z_A_data)
+plt.show()
+plt.hist(Z_V_data)
+plt.show()
+plt.hist(Z_D_data)
+plt.show()
+plt.hist(Z_A_data)
+plt.show()
+        
+#new_data= new_V_A+new_D_A+new_A_A
+#print(new_data)
+
+
