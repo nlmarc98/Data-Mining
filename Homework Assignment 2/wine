@@ -1,50 +1,140 @@
 ##Answer to question 2.1.1
-from scipy.io import loadmat
-from scipy import stats
 import numpy as np
-import matplotlib.pyplot as plt
-
+import scipy as scipy
+from scipy import stats
 mData = loadmat('./Data/wine.mat')
-#print(mData)
-data= mData['X']
-zData=stats.zscore(data)
-plt.boxplot(zData)
+data = mData['X']
+
+Zdata = stats.zscore(data)
+plt.boxplot(Zdata)
 plt.show()
 
-plt.hist(zData)
+plt.hist(Zdata)
 plt.show()
 
-#means=np.mean(stats.zscore(data), 0)
-#print(means)
-#print(np.std(data, axis=0))
+plt.figure()
+plt.subplot(1,3,1)
+plt.boxplot(Zdata[:,1])
+plt.xlabel('volatile acidity')
+plt.subplot(1,3,2)
+plt.boxplot(Zdata[:,7])
+plt.xlabel('density')
+plt.subplot(1,3,3)
+plt.boxplot(Zdata[:,10])
+plt.xlabel('alcohol')
+plt.show()
 
-#print(mData)
+plt.figure()
+plt.subplot(1,3,1)
+plt.hist(Zdata[:,1])
+plt.xlabel('volatile acidity')
+plt.subplot(1,3,2)
+plt.hist(Zdata[:,7])
+plt.xlabel('density')
+plt.subplot(1,3,3)
+plt.hist(Zdata[:,10])
+plt.xlabel('alcohol')
+plt.show()
 
-new_V_A=list()
-for i in data[:,1]:
-    if i> 10*2:
-        new_V_A.append(i)
+
+newData = []
+for row in data:
+    if row[1]<=20 and row[7]<=10 and row[10]<=200 :
+        newData.append(row)
         
-new_D_A=list()
-for i in data[:,7]:
- if i >10*1:
-        new_D_A.append(i)
- 
+newData = np.array(newData)  
+newZData = stats.zscore(newData)
 
-new_A_A=list()
-for i in data[:,7]:
- if i> 10*20:
-        new_A_A.append(i)
+plt.figure()
+plt.subplot(1,3,1)
+plt.boxplot(newZData[:,1])
+plt.xlabel('volatile acidity')
+plt.subplot(1,3,2)
+plt.boxplot(newZData[:,7])
+plt.xlabel('density')
+plt.subplot(1,3,3)
+plt.boxplot(newZData[:,10])
+plt.xlabel('alcohol')
+plt.show()
 
-Z_V_data=stats.zscore(new_V_A)
-plt.boxplot(Z_V_data)
+plt.figure()
+plt.subplot(1,3,1)
+plt.hist(newZData[:,1])
+plt.xlabel('volatile acidity')
+plt.subplot(1,3,2)
+plt.hist(newZData[:,7])
+plt.xlabel('density')
+plt.subplot(1,3,3)
+plt.hist(newZData[:,10])
+plt.xlabel('alcohol')
 plt.show()
-Z_D_data=stats.zscore(new_D_A)
-plt.boxplot(Z_D_data)
+
+##Answer to question 2.1.2
+plt.scatter(newData[:,11], newData[:,0])
+plt.xlabel('Quality score')
+plt.ylabel('fixed acidity')
 plt.show()
-Z_A_data=stats.zscore(new_A_A)
-plt.boxplot(Z_A_data)
+print(scipy.stats.pearsonr(newData[:,11], newData[:,0]))
+
+
+plt.scatter(newData[:,11], newData[:,1])
+plt.xlabel('Quality score')
+plt.ylabel('volatile acidity')
 plt.show()
-        
-#new_data= new_V_A+new_D_A+new_A_A
-#print(new_data)
+print(scipy.stats.pearsonr(newData[:,11], newData[:,1]))
+
+plt.scatter(newData[:,11], newData[:,2])
+plt.xlabel('Quality score')
+plt.ylabel('Critric acid')
+plt.show()
+print(scipy.stats.pearsonr(newData[:,11], newData[:,2]))
+
+plt.scatter(newData[:,11], newData[:,3])
+plt.xlabel('Quality score')
+plt.ylabel('Residual Sugar')
+plt.show()
+print(scipy.stats.pearsonr(newData[:,11], newData[:,3]))
+
+plt.scatter(newData[:,11], newData[:,4])
+plt.xlabel('Quality score')
+plt.ylabel('Chlorides')
+plt.show()
+print(scipy.stats.pearsonr(newData[:,11], newData[:,4]))
+
+plt.scatter(newData[:,11], newData[:,5])
+plt.xlabel('Quality score')
+plt.ylabel('Free sulfur dioxide')
+plt.show()
+print(scipy.stats.pearsonr(newData[:,11], newData[:,5]))
+
+plt.scatter(newData[:,11], newData[:,6])
+plt.xlabel('Quality score')
+plt.ylabel('Total sulfur dioxide')
+plt.show()
+print(scipy.stats.pearsonr(newData[:,11], newData[:,6]))
+
+plt.scatter(newData[:,11], newData[:,7])
+plt.xlabel('Quality score')
+plt.ylabel('Density')
+plt.show()
+print(scipy.stats.pearsonr(newData[:,11], newData[:,7]))
+
+plt.scatter(newData[:,11], newData[:,8])
+plt.xlabel('Quality score')
+plt.ylabel('PH')
+plt.show()
+print(scipy.stats.pearsonr(newData[:,11], newData[:,8]))
+
+plt.scatter(newData[:,11], newData[:,9])
+plt.xlabel('Quality score')
+plt.ylabel('Sulphates')
+plt.show()
+print(scipy.stats.pearsonr(newData[:,11], newData[:,9]))
+
+plt.scatter(newData[:,11], newData[:,10])
+plt.xlabel('Quality score')
+plt.ylabel('Alcohol')
+plt.show()
+print(scipy.stats.pearsonr(newData[:,11], newData[:,10]))
+
+
