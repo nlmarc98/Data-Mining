@@ -1,0 +1,110 @@
+import pandas as pd
+from pandas.plotting import scatter_matrix
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.patches as mpatches
+from pandas.plotting import scatter_matrix
+
+
+X=[]
+new_y=[]
+for i, val in enumerate(y):
+    if val <=1:
+        X.append(traindata[i,1:])
+        new_y.append(val)
+X = np.array(X)
+new_y = np.array(new_y)
+
+for i in range(10):
+    I = reshape(X[i,:],(16,16))
+    plt.imshow(I, extent=(0,16,0,16), cmap=cm.gray_r);
+    plt.title('Digit as an image');
+    plt.show()
+    
+means = np.mean(X, 0)
+Y = X-means
+u,s,vt = np.linalg.svd(Y) 
+V = np.transpose(vt)
+Z = Y.dot(V)
+
+Xpca = np.array(Z[:,:4])
+
+
+W = Xpca.dot(np.transpose(V[:,:4])) + means
+print(np.shape(Xpca))
+
+for i in range(10):
+    I = reshape(W[i,:],(16,16))
+    plt.imshow(I, extent=(0,16,0,16), cmap=cm.gray_r);
+    plt.title('Digit as an image');
+    plt.show()
+
+#plt.figure()
+#plt.subplot(1,4,1)
+#plt.scatter(Xpca[:,0],Xpca[:,0])
+#plt.subplot(1,4,2)
+#plt.scatter(Xpca[:,0],Xpca[:,1])
+#plt.subplot(1,4,3)
+#plt.scatter(Xpca[:,0],Xpca[:,2])
+#plt.subplot(1,4,4)
+#plt.scatter(Xpca[:,0],Xpca[:,3])
+#plt.show()
+
+#plt.figure()
+#plt.subplot(1,4,1)
+#plt.scatter(Xpca[:,1],Xpca[:,0])
+#plt.subplot(1,4,2)
+#plt.scatter(Xpca[:,1],Xpca[:,1])
+#plt.subplot(1,4,3)
+#plt.scatter(Xpca[:,1],Xpca[:,2])
+#plt.subplot(1,4,4)
+#plt.scatter(Xpca[:,1],Xpca[:,3])
+#plt.show()
+
+#plt.figure()
+#plt.subplot(1,4,1)
+#plt.scatter(Xpca[:,2],Xpca[:,0])
+#plt.subplot(1,4,2)
+#plt.scatter(Xpca[:,2],Xpca[:,1])
+#plt.subplot(1,4,3)
+#plt.scatter(Xpca[:,2],Xpca[:,2])
+#plt.subplot(1,4,4)
+#plt.scatter(Xpca[:,2],Xpca[:,3])
+#plt.show()
+
+#plt.figure()
+#plt.subplot(1,4,1)
+#plt.scatter(Xpca[:,3],Xpca[:,0])
+#plt.subplot(1,4,2)
+#plt.scatter(Xpca[:,3],Xpca[:,1])
+#plt.subplot(1,4,3)
+#plt.scatter(Xpca[:,3],Xpca[:,2])
+#plt.subplot(1,4,4)
+#plt.scatter(Xpca[:,3],Xpca[:,3])
+#plt.show()
+
+df = pd.DataFrame(Xpca, columns=['a', 'b', 'c', 'd'])
+scatter_matrix(df, alpha=0.2, figsize=(6, 6), diagonal='kde')
+
+fig = plt.figure()
+ax = Axes3D(fig)
+
+Xpca1 = []
+Xpca0 = []
+
+for ind, val in enumerate(new_y):
+    if val == 0:
+        Xpca0.append(Xpca[ind,:])
+    else:
+        Xpca1.append(Xpca[ind,:])
+Xpca0 = np.array(Xpca0)
+Xpca1 = np.array(Xpca1)
+
+ax.scatter(Xpca0[:,0], Xpca0[:,1], Xpca0[:,2], c='r', marker='o')
+ax.scatter(Xpca1[:,0], Xpca1[:,1], Xpca1[:,2], c='g', marker='o')
+
+red_patch= mpatches.Patch(color='red', label= 'class 0')
+green_patch= mpatches.Patch(color='green', label= 'class 1')
+plt.legend(handles=[red_patch, green_patch ])
+
+
+plt.show()
