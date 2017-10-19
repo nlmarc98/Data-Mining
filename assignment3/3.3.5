@@ -1,0 +1,36 @@
+import numpy as np
+from scipy.stats import binom
+import matplotlib.pyplot as plt
+ww = 0
+wc = 0
+cw = 0
+cc = 0
+for i ,val in enumerate(p1):
+    if val == 0 and val == p2[i]:
+        ww = ww+1
+    elif val == 1 and val == p2[i]:
+        cc = cc+1
+    elif val == 0 and val != p2[i]:
+        wc = wc+1
+    elif val == 1 and val != p2[i]:
+        cw = cw+1
+table = [[cc, cw], [wc, ww]] 
+print np.matrix(table)
+    
+    
+
+N = wc + cw #how often one coin was a winner
+print('The lucky coin won {} times, while the random won {} times.'.format(cw,wc))
+b = binom(N,0.5) #N=observations of inequality, p=prob of one coin being better
+plt.plot(b.pmf(range(N+1)), '--o',label = 'Probability density')
+plt.plot(b.cdf(range(N+1)), '--o',label = 'Cumulative distribution')
+plt.legend()
+plt.xlabel('number of time one prediction is better than the other')
+plt.ylabel('Probability')
+plt.title('Distribution according to H0')
+plt.show()
+p_value = b.cdf(min(cw,wc)) + (1-b.cdf(max(cw,wc)-1))
+print('The p-value is {:.3f}'.format(p_value))
+
+# no significant difference, p>0.05 thus we cant throw away the null hypotehesis: Null hypothesis: for a random pair of samples, x1 and x2 are equally likely to
+#be larger than the other.
