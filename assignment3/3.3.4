@@ -1,0 +1,27 @@
+m1=[]
+n1=[]
+m2=[]
+n2=[]
+for i, val in enumerate(true_class):
+    if val == 1:
+        m1.append(pred1[i])
+        m2.append(pred2[i])
+    else:
+        n1.append(pred1[i])
+        n2.append(pred2[i])
+
+summed1 = 0
+for i, m_val in enumerate(m1):
+    for j, n_val in enumerate(n1):
+        if m_val > n_val:
+            summed1 = summed1 + 1.0
+AUC1 = (1.0/(len(m1)*len(n1)))*summed1     
+        
+summed2 = 0
+for i, m_val in enumerate(m2):
+    for j, n_val in enumerate(n2):
+        if m_val > n_val:
+            summed2 = summed2 + 1.0
+AUC2 = (1.0/(len(m2)*len(n2)))*summed2  
+
+print AUC1,AUC2
