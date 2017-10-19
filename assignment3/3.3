@@ -1,0 +1,49 @@
+#3.3.1
+import numpy as np
+import xlrd
+
+doc = xlrd.open_workbook('Data/classprobs.xls').sheet_by_index(0)
+true_class = doc.col_values(0)
+pred1 = doc.col_values(1)
+pred2 = doc.col_values(2)
+
+#3.3.2
+from sklearn.metrics import roc_curve
+import matplotlib.pyplot as plt
+
+
+FP1, TP1, thresh1 = roc_curve(true_class, pred1)
+FP2, TP2, thresh2 = roc_curve(true_class, pred2)
+
+#write your code here
+plt.plot(FP1, TP1)
+plt.plot(FP2, TP2)
+plt.plot([0,1], [0,1], '--')
+plt.show()
+
+#3.3.3
+from sklearn.metrics import roc_auc_score
+auc1 = roc_auc_score(true_class, pred1)
+auc2 = roc_auc_score(true_class, pred2)
+print(auc1, auc2)
+
+m1=[]
+n1=[]
+m2=[]
+n2=[]
+for i, val in enumerate(true_class):
+    if val == 1:
+        m1.append(pred1[i])
+        m2.append(pred2[i])
+    else:
+        n1.append(pred1[i])
+        n2.append(pred2[i])
+
+sum = 0
+for i, m_val in enumerate(m2):
+    for j, n_val in enumerate(n2):
+        if m_val > n_val:
+            sum = sum + 1
+
+AUC2 = (1/(len(m2)*len(n2))*sum     
+print(AUC2)
