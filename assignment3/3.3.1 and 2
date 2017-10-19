@@ -1,0 +1,22 @@
+#3.3.1
+import numpy as np
+import xlrd
+
+doc = xlrd.open_workbook('Data/classprobs.xls').sheet_by_index(0)
+true_class = doc.col_values(0)
+pred1 = doc.col_values(1)
+pred2 = doc.col_values(2)
+
+#3.3.2
+from sklearn.metrics import roc_curve
+import matplotlib.pyplot as plt
+
+
+FP1, TP1, thresh1 = roc_curve(true_class, pred1)
+FP2, TP2, thresh2 = roc_curve(true_class, pred2)
+
+#write your code here
+plt.plot(FP1, TP1)
+plt.plot(FP2, TP2)
+plt.plot([0,1], [0,1], '--')
+plt.show()
