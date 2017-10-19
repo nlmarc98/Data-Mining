@@ -1,27 +1,30 @@
-m1=[]
-n1=[]
-m2=[]
-n2=[]
-for i, val in enumerate(true_class):
-    if val == 1:
-        m1.append(pred1[i])
-        m2.append(pred2[i])
+p1 = []
+correct1 = 0
+for i, val in enumerate(pred1):
+    if val >= 0.5:
+        p1.append(1)
+        x = 1
     else:
-        n1.append(pred1[i])
-        n2.append(pred2[i])
+        x = 0
+        p1.append(0)
+    if x == true_class[i]:
+        correct1 = correct1 +1.0
 
-summed1 = 0
-for i, m_val in enumerate(m1):
-    for j, n_val in enumerate(n1):
-        if m_val > n_val:
-            summed1 = summed1 + 1.0
-AUC1 = (1.0/(len(m1)*len(n1)))*summed1     
-        
-summed2 = 0
-for i, m_val in enumerate(m2):
-    for j, n_val in enumerate(n2):
-        if m_val > n_val:
-            summed2 = summed2 + 1.0
-AUC2 = (1.0/(len(m2)*len(n2)))*summed2  
+p2 = []        
+correct2 = 0
+for i, val in enumerate(pred2):
+    if val >= 0.5:
+        p2.append(1)
+        x = 1
+    else:
+        p2.append(0)
+        x = 0
+    if x == true_class[i]:
+        correct2 = correct2 +1.0
 
-print AUC1,AUC2
+acc1 = correct1/float(len(true_class))
+acc2 = correct2/float(len(true_class))
+print acc1, acc2
+
+#accuracy for pred1 is 0.861111111111
+#accuracy for pred2 is 0.694444444444
