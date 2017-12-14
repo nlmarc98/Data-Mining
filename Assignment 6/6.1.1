@@ -1,0 +1,85 @@
+def column(matrix, i):
+    return [row[i] for row in matrix]
+
+nb = 5
+dm = 1
+
+synth = loadmat('Data/synth1.mat')
+X = synth['X']
+y = synth['y']
+Xtrain = synth['X_train']
+Xtest = synth['X_test']
+ytrain = synth['y_train']
+ytest = synth['y_test']
+scatter(column(X, 0), column(X, 1),c = y)
+plt.legend(['0', '1', '2', '3'], loc='center')
+plt.show()
+
+from sklearn.neighbors import KNeighborsClassifier
+neigh = KNeighborsClassifier(n_neighbors=nb, p=dm)
+neigh.fit(Xtrain,ytrain.ravel()) 
+predX = neigh.predict(X)
+print(predX)
+scatter(column(X, 0), column(X, 1),c = predX)
+plt.legend(['0', '1', '2', '3'], loc='center')
+plt.show()
+
+
+synth2 = loadmat('Data/synth2.mat')
+X2 = synth2['X']
+y2 = synth2['y']
+Xtrain2 = synth2['X_train']
+Xtest2 = synth2['X_test']
+ytrain2 = synth2['y_train']
+ytest2 = synth2['y_test']
+scatter(column(X2, 0), column(X2, 1),c = y2)
+plt.legend(['0', '1', '2', '3'], loc='center')
+plt.show()
+
+neigh2 = KNeighborsClassifier(n_neighbors=nb, p=dm)
+neigh2.fit(Xtrain2,ytrain2.ravel()) 
+predX2 = neigh2.predict(X2)
+print(predX2)
+scatter(column(X2, 0), column(X2, 1),c = predX2)
+plt.legend(['0', '1', '2', '3'], loc='center')
+plt.show()
+
+
+synth3 = loadmat('Data/synth3.mat')
+X3 = synth3['X']
+y3 = synth3['y']
+Xtrain3 = synth3['X_train']
+Xtest3 = synth3['X_test']
+ytrain3 = synth3['y_train']
+ytest3 = synth3['y_test']
+scatter(column(X3, 0), column(X3, 1),c = y3)
+plt.legend(['0', '1', '2', '3'], loc='center')
+plt.show()
+
+neigh3 = KNeighborsClassifier(n_neighbors=nb, p=dm)
+neigh3.fit(Xtrain3,ytrain3.ravel()) 
+predX3 = neigh3.predict(X3)
+print(predX3)
+scatter(column(X3, 0), column(X3, 1),c = predX3)
+plt.legend(['0', '1', '2', '3'], loc='center')
+plt.show()
+
+synth4 = loadmat('Data/synth4.mat')
+X4 = synth4['X']
+y4 = synth4['y']
+Xtrain4 = synth4['X_train']
+Xtest4 = synth4['X_test']
+ytrain4 = synth4['y_train']
+ytest4 = synth4['y_test']
+scatter(column(X4, 0), column(X4, 1),c = y4)
+plt.legend(['0', '1', '2', '3'], loc='center')
+plt.show()
+
+neigh4 = KNeighborsClassifier(n_neighbors=nb, p=dm)
+neigh4.fit(Xtrain4,ytrain4.ravel()) 
+predX4 = neigh4.predict(X4)
+print(predX4)
+scatter(column(X4, 0), column(X4, 1),c = predX4)
+plt.legend(['0', '1', '2', '3'], loc='center')
+plt.show()
+
