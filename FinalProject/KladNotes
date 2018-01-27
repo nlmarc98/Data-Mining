@@ -73,3 +73,29 @@ elif data==2:
     classNames = [u'Iris-setosa', u'iris-Virginica', u'Iris-versicolor', u'Iris_mythica']
 
 print(data2)
+
+
+
+data1 = pd.read_excel('iris.xls', sep= ';')
+data2 = pd.read_csv('iris_extended_class.csv')
+data3 = pd.read_csv('IrisData3ExtraAttributes.csv')
+
+data = 3
+if data==1:
+    X = data1[['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']]
+    y = data1['Type']
+    attributeNames = [u'Sepal Length', u'Sepal Width', u'Petal Length', u'Petal Width']
+    classNames = [u'Iris-setosa', u'iris-Virginica', u'Iris-versicolor']
+elif data==2:
+    X = data2[['sepal.length', 'sepal.width', 'petal.length', 'petal.width']]
+    y = data2['class']
+    attributeNames = [u'Sepal Length', u'Sepal Width', u'Petal Length', u'Petal Width']
+    classNames = [u'Iris-setosa', u'iris-Virginica', u'Iris-versicolor', u'Iris_mythica']
+elif data==3:
+    X = data3[['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width', 'Attractiveness', 'LikelyToBuy', 'Review']]
+    y = data3['Species']
+    attributeNames = [u'Sepal Length', u'Sepal Width', u'Petal Length', u'Petal Width', u'Attractiveness', u'LikelyToBuy', u'Review']
+    classNames = [u'setosa', u'virginica', u'versicolor']
+
+print(data3)
+
