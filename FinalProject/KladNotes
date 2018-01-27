@@ -1,0 +1,52 @@
+with open('Data/ForestFires.csv') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        print(row)
+
+
+
+https://docs.python.org/3/library/csv.html 
+
+import numpy as np
+from scipy.io import loadmat
+import pandas as pd
+from sklearn import model_selection, tree
+#import treeprint
+import matplotlib.pyplot as plt
+
+data = pd.read_csv('bank-full.csv', sep= ';')
+X = data[['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan']]
+y = data['y']
+for i in range(0, len(y)):
+    if y[i] == 'no':
+        y[i] = 0
+    else:
+        y[i] = 1
+print(y)
+
+
+
+X = bank_data[['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan','contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome']]
+
+X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.2)
+dtc = tree.DecisionTreeClassifier(min_samples_split=100)    #create tree
+
+dtc = dtc.fit(X_train,y_train)
+attributeNames = [u'Sepal Length', u'Sepal Width', u'Petal Length', u'Petal Width']
+classNames = [u'Iris-setosa', u'iris-Virginica']
+treeprint.tree_print(dtc, attributeNames, classNames)
+
+
+--- 
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+iris = sns.load_dataset("iris")
+iris["ID"] = iris.index
+iris["ratio"] = iris["sepal_length"]/iris["sepal_width"]
+
+sns.lmplot(x="ID", y="ratio", data=iris, hue="species", fit_reg=False, legend=False)
+
+plt.legend()
+plt.show()
+
