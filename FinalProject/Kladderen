@@ -1,0 +1,145 @@
+####Naive Bayes is missing here. 
+
+
+data1=pd.read_excel('Data/iris.xls', sep=';')
+data2 = pd.read_csv('Data/iris_extended_class.csv')
+data3 = pd.read_csv('Data/IrisData3ExtraAttributes.csv')
+
+data = 1
+if data==1:
+    X = data1[['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']]
+    y = data1['Type']
+    attributeNames = [u'Sepal Length', u'Sepal Width', u'Petal Length', u'Petal Width']
+    classNames = [u'Iris-setosa', u'iris-Virginica', u'Iris-versicolor']
+elif data==2:
+    X = data2[['sepal.length', 'sepal.width', 'petal.length', 'petal.width']]
+    y = data2['class']
+    attributeNames = [u'Sepal Length', u'Sepal Width', u'Petal Length', u'Petal Width']
+    classNames = [u'Iris-setosa', u'iris-Virginica', u'Iris-versicolor', u'Iris_mythica']
+elif data==3:
+    X = data3[['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width', 'Attractiveness', 'LikelyToBuy', 'Review']]
+    y = data3['Species']
+    attributeNames = [u'Sepal Length', u'Sepal Width', u'Petal Length', u'Petal Width', u'Attractiveness', u'LikelyToBuy', u'Review']
+    classNames = [u'setosa', u'virginica', u'versicolor']
+
+if data==1:
+    accDT = []
+    accKNN = []
+    accSVM = []
+    accNB = []
+    accRFC = []
+    accNN = []
+    accAB = []
+elif data==2:
+    accDT2 = []
+    accKNN2 = []
+    accSVM2 = []
+    accNB2 = []
+    accRFC2 = []
+    accNN2 = []
+    accAB2 = []
+elif data==3:
+    accDT3 = []
+    accKNN3 = []
+    accSVM3 = []
+    accNB3 = []
+    accRFC3 = []
+    accNN3 = []
+    accAB3 = []
+
+    
+for x in range(0, 10):
+    #decision tree
+    X_train, X_test, y_train, y_test = train_test_split(X, y)
+    dtc = tree.DecisionTreeClassifier()   
+    dtc = dtc.fit(X_train,y_train)
+    #treeprint.tree_print(dtc, attributeNames, classNames)
+    acc0=dtc.score(X_test, y_test, sample_weight=None)
+    #print('accuracy decision tree',acc0)
+
+    #K-Nearest Neighbours
+    nb = 10 #neighBours
+    dm = 2 #DistanceMeasure 
+
+    neigh = KNeighborsClassifier(n_neighbors=nb, p=dm)
+    neigh = neigh.fit(X_train,y_train) 
+    predX = neigh.predict(X_test)
+    acc1= accuracy_score(y_test, predX)
+    #print('accuracy KNN', acc1)
+
+    #support vector mashine
+    clf = svm.SVC()
+    prediction=clf.fit(X_train, y_train).predict(X_test)
+    acc2=accuracy_score(y_test, prediction)
+    #print('accuracy NB', acc3)
+
+    #Random forest classifier
+    clf = RandomForestClassifier(max_depth=None, random_state=0)
+    predictionRFC=clf.fit(X_train, y_train).predict(X_test)
+    acc4=accuracy_score(y_test, predictionRFC)
+    #print('accuracy RFC',acc4)
+
+    #neural network
+    clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(15,), random_state=1)
+    NN_prediction=clf.fit(X_train, y_train).predict(X_test)
+    acc5=accuracy_score(y_test, NN_prediction)
+    #print('accuracy NN',acc5)
+
+    #adaboost
+    ABC_real = AdaBoostClassifier(n_estimators=100,  learning_rate=1)
+    predictionABC=ABC_real.fit(X_train, y_train).predict(X_test)
+    acc6=accuracy_score(y_test, predictionABC)
+    #print('accuracy AdaBoost',acc6)    
+
+    if data==1:
+        accDT.append(acc0)
+        accKNN.append(acc1)
+        accSVM.append(acc2)
+        accNB.append(acc3)
+        accRFC.append(acc4)
+        accNN.append(acc5)
+        accAB.append(acc6)
+    elif data==2:
+        accDT2.append(acc0)
+        accKNN2.append(acc1)
+        accSVM2.append(acc2)
+        accNB2.append(acc3)
+        accRFC2.append(acc4)
+        accNN2.append(acc5)
+        accAB2.append(acc6)
+    elif data==3:
+        accDT3.append(acc0)
+        accKNN3.append(acc1)
+        accSVM3.append(acc2)
+        accNB3.append(acc3)
+        accRFC3.append(acc4)
+        accNN3.append(acc5)
+        accAB3.append(acc6)
+
+
+#print(accDT, accKNN, accSVM, accNB, accRFC, accNN, accAB)
+
+
+print('The Mean of DT is', np.mean(accDT))
+print('The Mean of DT2 is ', np.mean(accDT2))
+print('The Mean of DT3 is ', np.mean(accDT3))
+
+print('The Mean of KNN is', np.mean(accKNN))
+print('The Mean of KNN2 is ', np.mean(accKNN2))
+print('The Mean of KNN3 is ', np.mean(accKNN3))
+
+print('The Mean of SVM is', np.mean(accSVM))
+print('The Mean of SVM2 is ', np.mean(accSVM2))
+print('The Mean of SVM3 is ', np.mean(accSVM3))
+
+print('The Mean of NN is', np.mean(accNN))
+print('The Mean of NN2 is ', np.mean(accNN2))
+print('The Mean of NN3 is ', np.mean(accNN3))
+
+print('The Mean of RF is', np.mean(accNB))
+print('The Mean of RF2 is ', np.mean(accNB2))
+print('The Mean of RF3 is ', np.mean(accNB3))
+
+print(accKNN3)
+
+
