@@ -1,0 +1,33 @@
+meansData1 = [meansAccDT[0], meansAccKNN[0], meansAccSVM[0], meansAccNB[0], meansAccRFC[0], meansAccNN[0], meansAccAB[0]]
+meansData2 = [meansAccDT[1], meansAccKNN[1], meansAccSVM[1], meansAccNB[1], meansAccRFC[1], meansAccNN[1], meansAccAB[1]]
+meansData3 = [meansAccDT[2], meansAccKNN[2], meansAccSVM[2], meansAccNB[2], meansAccRFC[2], meansAccNN[2], meansAccAB[2]]
+
+
+index = np.arange(7)
+bar_width = 0.25
+opacity = 1
+ 
+rects1 = plt.bar(index, meansData1, bar_width,
+                 alpha=opacity,
+                 color='#11909f',
+                 label='Data1')
+ 
+rects2 = plt.bar(index + bar_width, meansData2, bar_width,
+                 alpha=opacity,
+                 color='#c72816',
+                 label='Data2')
+ 
+rects3 = plt.bar(index + 2*bar_width, meansData3, bar_width,
+                 alpha=opacity,
+                 color='#c384db',
+                 label='Data3')
+ 
+plt.xlabel('Dataset')
+plt.ylabel('Average accuracy')
+plt.title('Scores by person')
+plt.xticks(index + bar_width, ('DT', 'KNN', 'SVM', 'NB', 'RFC', 'NN', 'AB'))
+plt.legend(bbox_to_anchor=(1, 1))
+ 
+plt.tight_layout()
+plt.show()
+
