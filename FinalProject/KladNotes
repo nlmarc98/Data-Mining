@@ -1,84 +1,11 @@
-with open('Data/ForestFires.csv') as f:
-    reader = csv.reader(f)
-    for row in reader:
-        print(row)
+accDT = []
+accKNN = []
+accSVM = []
+accNB = []
+accRFC = []
+accNN = []
+accAB = []
 
-
-
-https://docs.python.org/3/library/csv.html 
-
-import numpy as np
-from scipy.io import loadmat
-import pandas as pd
-from sklearn import model_selection, tree
-#import treeprint
-import matplotlib.pyplot as plt
-
-data = pd.read_csv('bank-full.csv', sep= ';')
-X = data[['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan']]
-y = data['y']
-for i in range(0, len(y)):
-    if y[i] == 'no':
-        y[i] = 0
-    else:
-        y[i] = 1
-print(y)
-
-
-
-X = bank_data[['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan','contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome']]
-
-X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.2)
-dtc = tree.DecisionTreeClassifier(min_samples_split=100)    #create tree
-
-dtc = dtc.fit(X_train,y_train)
-attributeNames = [u'Sepal Length', u'Sepal Width', u'Petal Length', u'Petal Width']
-classNames = [u'Iris-setosa', u'iris-Virginica']
-treeprint.tree_print(dtc, attributeNames, classNames)
-
-
---- 
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-iris = sns.load_dataset("iris")
-iris["ID"] = iris.index
-iris["ratio"] = iris["sepal_length"]/iris["sepal_width"]
-
-sns.lmplot(x="ID", y="ratio", data=iris, hue="species", fit_reg=False, legend=False)
-
-plt.legend()
-plt.show()
-
-
-
-
-
-
-
-
-data1 = pd.read_excel('iris.xls', sep= ';')
-data2 = pd.read_csv('iris_extended_class.csv')
-
-data = 2
-if data==1:
-    X = data1[['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']]
-    y = data1['Type']
-    attributeNames = [u'Sepal Length', u'Sepal Width', u'Petal Length', u'Petal Width']
-    classNames = [u'Iris-setosa', u'iris-Virginica', u'Iris-versicolor']
-elif data==2:
-    X = data2[['sepal.length', 'sepal.width', 'petal.length', 'petal.width']]
-    y = data2['class']
-    attributeNames = [u'Sepal Length', u'Sepal Width', u'Petal Length', u'Petal Width']
-    classNames = [u'Iris-setosa', u'iris-Virginica', u'Iris-versicolor', u'Iris_mythica']
-
-print(data2)
-
-
-
-data1 = pd.read_excel('iris.xls', sep= ';')
-data2 = pd.read_csv('iris_extended_class.csv')
-data3 = pd.read_csv('IrisData3ExtraAttributes.csv')
 
 data = 3
 if data==1:
@@ -97,5 +24,50 @@ elif data==3:
     attributeNames = [u'Sepal Length', u'Sepal Width', u'Petal Length', u'Petal Width', u'Attractiveness', u'LikelyToBuy', u'Review']
     classNames = [u'setosa', u'virginica', u'versicolor']
 
-print(data3)
+#decision tree
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+dtc = tree.DecisionTreeClassifier()   
+dtc = dtc.fit(X_train,y_train)
+treeprint.tree_print(dtc, attributeNames, classNames)
+acc0=dtc.score(X_test, y_test, sample_weight=None)
+print('accuracy decision tree',acc0)
 
+#K-Nearest Neighbours
+nb = 10 #neighBours
+dm = 2 #DistanceMeasure 
+
+neigh = KNeighborsClassifier(n_neighbors=nb, p=dm)
+neigh = neigh.fit(X_train,y_train) 
+predX = neigh.predict(X_test)
+acc1= accuracy_score(y_test, predX)
+print('accuracy KNN', acc1)
+
+#support vector mashine
+clf = svm.SVC()
+prediction=clf.fit(X_train, y_train).predict(X_test)
+acc3=accuracy_score(y_test, prediction)
+print('accuracy SVM', acc3)
+
+#naive bayes
+gnb = GaussianNB()
+predNB = gnb.fit(X_train, y_train).predict(X_test)
+acc4=accuracy_score(y_test, predNB)
+print('accuracy NB', acc4)
+
+#Random forest classifier
+clf = RandomForestClassifier(max_depth=None, random_state=0)
+predictionRFC=clf.fit(X_train, y_train).predict(X_test)
+acc5=accuracy_score(y_test, predictionRFC)
+print('accuracy RFC',acc5)
+
+#neural network
+clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(15,), random_state=1)
+NN_prediction=clf.fit(X_train, y_train).predict(X_test)
+acc6=accuracy_score(y_test, NN_prediction)
+print('accuracy NN',acc6)
+
+#adaboost
+ABC_real = AdaBoostClassifier(n_estimators=100,  learning_rate=1)
+predictionABC=ABC_real.fit(X_train, y_train).predict(X_test)
+acc7=accuracy_score(y_test, predictionABC)
+print('accuracy AdaBoost',acc7)
